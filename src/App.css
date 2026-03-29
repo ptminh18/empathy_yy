@@ -1,0 +1,244 @@
+@font-face {
+  font-family: "Noto Sans";
+  src: url("./assets/fonts/noto-sans/NotoSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  background-color: black;
+  font-family: "Noto Sans", system-ui, "Segoe UI", Roboto, sans-serif;
+}
+.upper-header {
+  transform: translateY(-15px);
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  font-size: medium;
+  font-weight: lighter;
+}
+.header {
+  position: sticky;
+  top: 13px;
+  height: 60px;
+  transform: translateY(-15px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #232323;
+  border-top: 1px solid #232323;
+  padding-left: 22vw;
+  padding-right: 22vw;
+  margin-top: -10px;
+}
+.menu {
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  font-weight: bold;
+}
+.icons {
+  display: flex;
+  gap: 20px;
+}
+.logo-wrapper {
+  display: flex;
+  width: 90px;
+}
+.logo-header {
+  background-color: black;
+  width: 90px;
+  height: 60px;
+  transition: width 0.3s ease;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.main-img {
+  width: 100%;
+  object-fit: cover;
+}
+.logo-header.smaller {
+  width: 75px;
+  height: 45px;
+}
+.yoyo-name .yoyo-description {
+  font-size: medium;
+  font-weight: bold;
+}
+.yoyo-link {
+  color: brown;
+  font-size: small;
+}
+.main-video {
+  width: 80%;
+  height: 100%;
+}
+.footer-introduction {
+  font-size: small;
+  font-weight: 200;
+}
+
+.site-footer {
+  background-color: #000;
+  color: #fff;
+  padding: 60px 40px 20px 40px;
+  font-family: "MyCustomFont", sans-serif; /* Using your custom font! */
+}
+
+.footer-container {
+  max-width: 100%;
+  margin-top: 40px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+/* TOP ROW */
+.footer-brand-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 40vw;
+  margin-bottom: 40px;
+}
+
+.footer-brand-information {
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.newsletter-wrapper {
+  max-width: 1000px;
+  width: 600px;
+}
+
+.input-group {
+  transform: translateX(-1vw);
+  position: relative;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+}
+
+.newsletter-input {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.newsletter-submit {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.social-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 13vw;
+}
+.social-icons svg {
+  color: white;
+  display: flex;
+}
+.social-icons svg:hover {
+  transform: scale(1.1);
+}
+
+/* MIDDLE ROW */
+.footer-middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-bottom: 40px;
+  margin-right: 12vw;
+}
+
+.selectors-group {
+  display: flex;
+  gap: 20px;
+  margin-left: 12vw;
+}
+
+.selector-item label {
+  display: block;
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.selector-item select {
+  background: #000;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.payment-card {
+  width: 38px;
+  height: 24px;
+  background: #333; /* Placeholder color */
+  border-radius: 3px;
+}
+
+/* BOTTOM ROW */
+.footer-divider {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #888;
+  padding-top: 20px;
+  margin-left: 12vw;
+  margin-right: 12vw;
+}
+
+.footer-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  padding: 0;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .footer-top,
+  .footer-middle,
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+}
