@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.main-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.yoyo-name .yoyo-description {
+  font-size: medium;
+  font-weight: bold;
+}
+.yoyo-link {
+  color: brown;
+  font-size: small;
+}
+.main-video {
+  width: 80%;
+  height: 100%;
+}
