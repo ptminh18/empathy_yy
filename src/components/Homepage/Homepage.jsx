@@ -22,7 +22,7 @@ function Homepage() {
         <iframe
           width="800"
           height="510"
-          src="https://www.youtube.com/embed/Wl65Wmdya_o?si=XaHtrJZD9K8CiatP&amp;start=60"
+          src="https://www.youtube.com/embed/Wl65Wmdya_o?si=XaHtrJZD9K8CiatP&amp;start=0"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -18,9 +18,11 @@ const Header = () => {
       </div>
       <div className="header">
         <nav className="menu">
-          <div className="logo-wrapper">
-            <img className="logo-header" src={logoHeader} alt="empathy" />
-          </div>
+          <a href="/">
+            <div className="logo-wrapper">
+              <img className="logo-header" src={logoHeader} alt="empathy" />
+            </div>
+          </a>
           <a href="/yoyos">yoyos</a>
           <a href="/team">team</a>
           <a href="/blog">blog</a>
