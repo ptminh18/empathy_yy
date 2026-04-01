@@ -6,7 +6,6 @@ function ContactPage() {
   return (
     <div>
       <Header />
-      <h1>empathy's contact is here</h1>
       <Footer />
     </div>
   );

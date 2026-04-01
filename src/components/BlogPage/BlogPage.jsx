@@ -6,7 +6,6 @@ function BlogPage() {
   return (
     <div>
       <Header />
-      <h1>empathy's blogs are here</h1>
       <Footer />
     </div>
   );
