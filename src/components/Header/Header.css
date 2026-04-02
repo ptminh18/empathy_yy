@@ -3,9 +3,11 @@
   /* justify-content: space-between; */
   /* align-items: center; */
   background-color: black;
+}
+h5 {
   color: white;
-  font-size: medium;
-  font-weight: lighter;
+  font-size: small;
+  font-weight: 400;
 }
 .header {
   position: sticky;
@@ -17,9 +19,10 @@
   justify-content: space-between;
   border-bottom: 1px solid #232323;
   border-top: 1px solid #232323;
-  padding-left: 22vw;
-  padding-right: 22vw;
+  padding-left: 20vw;
+  padding-right: 20vw;
   margin-top: -10px;
+  z-index: 9999;
 }
 .menu {
   gap: 30px;

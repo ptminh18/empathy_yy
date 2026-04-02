@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <>
       <div className="footer-container">
-        <div className="footer-introductiong">
+        <div className="footer-introduction">
           <h5>... \'an independent yo-yo brand founded by tony šec\ ...</h5>
         </div>
         {/* TOP ROW */}
@@ -62,7 +62,6 @@ export default function Footer() {
           </div>
 
           <div className="payment-icons">
-            {/* Replace these divs with <img> tags for actual icons */}
             <div className="payment-card amex"></div>
             <div className="payment-card applepay"></div>
             <div className="payment-card mastercard"></div>
@@ -72,7 +71,7 @@ export default function Footer() {
 
         {/* BOTTOM ROW */}
         <div className="footer-bottom">
-          <p className="copyright">© 2026, empathy Powered by Shopify</p>
+          <p className="copyright">© 2026, empathy Powered by Phan The Minh</p>
           <ul className="footer-links">
             <li>
               <a href="#">Refund policy</a>

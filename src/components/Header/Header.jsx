@@ -5,7 +5,7 @@ const Header = () => {
   const smallerLogo = document.querySelector(".logo-header");
 
   window.addEventListener("scroll", function () {
-    if (window.scrollY > 20) {
+    if (window.scrollY > 50) {
       smallerLogo.classList.add("smaller");
     } else {
       smallerLogo.classList.remove("smaller");

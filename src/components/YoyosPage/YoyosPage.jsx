@@ -1,12 +1,15 @@
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
+import ProductList from "../ProductList/ProductList.jsx";
 import "./YoyosPage.css";
 
 function YoyosPage() {
   return (
     <div>
       <Header />
-      <h1>empathy's yoyos are here</h1>
+      <div>
+        <ProductList />
+      </div>
       <Footer />
     </div>
   );
