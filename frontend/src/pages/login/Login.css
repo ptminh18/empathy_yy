@@ -1,0 +1,80 @@
+.login-wrapper {
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.input-group input {
+  /* width: 30vw; */
+  background-color: transparent;
+  /* padding: 15px; */
+  color: #fff;
+  /* font-size: 16px; */
+  /* transform: translateX(5vw); */
+}
+
+/* .input-group input::placeholder {
+  color: #888;
+}
+
+.input-group input:focus {
+  border-color: #fff;
+} */
+
+/* .form-options {
+  text-align: left;
+}
+
+.form-options a {
+  color: #940001;
+  text-decoration: underline;
+  font-size: 14px;
+} */
+
+.btn-sign-in {
+  background-color: #940001;
+  align-self: center;
+  color: #fff;
+  border: none;
+  padding: 15px 40px 15px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+/* 
+.btn-sign-in:hover {
+  background-color: #b30000;
+}
+
+.form-footer {
+  margin-top: 20px;
+} */
+
+/* .form-footer a {
+  color: #888;
+  text-decoration: underline;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.form-footer a:hover {
+  color: #fff;
+}  */

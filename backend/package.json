@@ -1,0 +1,25 @@
+{
+  "name": "empathyoyo-database",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/ptminh18/empathy_yy#readme",
+  "bugs": {
+    "url": "https://github.com/ptminh18/empathy_yy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ptminh18/empathy_yy.git"
+  },
+  "license": "ISC",
+  "author": "ptminh18",
+  "type": "commonjs",
+  "main": "server.cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mssql": "^12.2.1"
+  }
+}

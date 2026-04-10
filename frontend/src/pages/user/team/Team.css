@@ -1,0 +1,63 @@
+.player-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #000;
+  padding-left: 20vw;
+  padding-right: 20vw;
+}
+.player-container {
+  display: flex;
+  align-items: center; /* Căn giữa ảnh và chữ theo chiều dọc */
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+.player-image-container {
+  width: 20vw; /* Chiều rộng cố định cho ảnh nhỏ (tùy chỉnh) */
+  height: 40vh; /* Chiều cao cố định (tạo hình vuông) */
+  flex-shrink: 0; /* Đảm bảo khung ảnh không bị bóp nhỏ khi text dài */
+  overflow: hidden;
+}
+.player-image-container img {
+  width: 100%; /* Ảnh lấp đầy chiều rộng khung */
+  height: 100%; /* Ảnh lấp đầy chiều cao khung */
+  object-fit: cover; /* Cắt ảnh thông minh, giữ tỷ lệ và căn tâm */
+  display: block; /* Loại bỏ khoảng trống thừa dưới ảnh */
+}
+
+.player-image-container :hover {
+  opacity: 1;
+  transform: none;
+}
+.player-information {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player-name {
+  transform: translateY(-5vh);
+  display: flex;
+  flex-direction: column;
+  padding-left: 3vw;
+  align-items: flex-start;
+}
+.player-signature {
+  background-color: #940001;
+  margin-top: -30px;
+  display: inline-flex;
+  align-self: flex-start; /* Ép nó bám lề trái */
+  margin-left: 3vw;
+}
+
+h2 {
+  color: white;
+  font-size: xx-large;
+}
+.player-signature a {
+  background-color: #940001;
+  color: white;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
