@@ -1,7 +1,7 @@
 import empathyPronunciation from "../../../assets/images/empathy-pronunciation.png";
 import empathyNoirShiny from "../../../assets/images/empathy-noir-shiny.png";
-import Header from "../../../Layouts/Header/Header.jsx";
-import Footer from "../../../Layouts/Footer/Footer.jsx";
+import Header from "../../../layouts/Header/Header.jsx";
+import Footer from "../../../layouts/Footer/Footer.jsx";
 import "./Home.css";
 
 function Homepage() {

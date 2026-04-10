@@ -1,4 +1,9 @@
 import logoHeader from "../../assets/images/empathy-icon-removebg.png";
+import {
+  IoSearchOutline,
+  IoPersonOutline,
+  IoBagOutline,
+} from "react-icons/io5";
 import "./Header.css";
 
 const Header = () => {
@@ -28,10 +33,16 @@ const Header = () => {
           <a href="/blog">blog</a>
           <a href="/contact">contact us</a>
         </nav>
-        <div className="icons">
-          <span>🔍</span>
-          <span>👤</span>
-          <span>🛍</span>
+        <div className="nav-icons">
+          <a>
+            <IoSearchOutline size={25} />
+          </a>
+          <a href="/login">
+            <IoPersonOutline size={25} />
+          </a>
+          <a>
+            <IoBagOutline size={25} />
+          </a>
         </div>
       </div>
     </>

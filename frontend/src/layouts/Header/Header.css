@@ -40,7 +40,7 @@ a:hover {
   color: #bfbfbf;
   text-decoration: underline;
 }
-.icons {
+.nav-icons {
   display: flex;
   gap: 20px;
 }
