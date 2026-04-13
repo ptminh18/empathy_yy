@@ -69,3 +69,20 @@
 .form-footer a:hover {
   color: #940001;
 }
+
+/* ...existing code... */
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+}
+
+.btn-sign-in:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

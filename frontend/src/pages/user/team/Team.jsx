@@ -39,11 +39,11 @@ function TeamPage() {
                 <div className="player-information">
                   <div className="player-name">
                     <h2>{item.name}</h2>
-                    <p>{item.translatorName}</p>
+                    <p>{item.translator_name}</p>
                   </div>
                   <div className="player-signature">
-                    {item.signatureModel && (
-                      <a href={item.signatureLink}>{item.signatureModel}</a>
+                    {item.signature_model && (
+                      <a href={item.signature_link}>{item.signature_model}</a>
                     )}
                   </div>
                 </div>
