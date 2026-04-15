@@ -7,7 +7,8 @@ import ContactPage from "./pages/user/contact/Contact.jsx";
 import LoginPage from "./pages/login/Login";
 import RegisterPage from "./pages/register/Register.jsx";
 import Dashboard from "./pages/admin/dashboard/Dashboard.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (

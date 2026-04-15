@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import "./Dashboard.css"; // Optional: for styling
 const Dashboard = () => {
   const [salesData, setSalesData] = useState([]);
@@ -7,22 +8,21 @@ const Dashboard = () => {
 
   // Fetch sales data from API
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/orders");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setSalesData(data.data || data);
+    fetch("http://127.0.0.1:8080/api/orders")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Dữ liệu nhận được từ Backend:", data); // Xem ở F12 Trình duyệt
+        const finalData = Array.isArray(data) ? data : data.recordset || [];
+        setSalesData(finalData);
         setLoading(false);
-      } catch (err) {
-        setError(err.message);
+      })
+      .catch((err) => {
+        console.error("Lỗi kết nối API:", err);
         setLoading(false);
-      }
-    };
-
-    fetchData();
+      });
   }, []);
 
   // Render loading state
@@ -38,6 +38,10 @@ const Dashboard = () => {
         <table>
           <thead>
             <tr>
+              <th>Order ID</th>
+              <th>Customer ID</th>
+              <th>Customer Name</th>
+              <th>Yoyo ID</th>
               <th>Yoyo Name</th>
               <th>Quantity</th>
               <th>Total Price</th>
@@ -47,12 +51,16 @@ const Dashboard = () => {
           </thead>
           <tbody>
             {salesData.map((order) => (
-              <tr key={order.yoyo_id}>
-                <td>{order.yoyo_name || "N/A"}</td>
-                <td>{order.quantity || "N/A"}</td>
-                <td>{order.total_price || "N/A"}</td>
-                <td>{order.order_date || "N/A"}</td>
-                <td>{order.status || "N/A"}</td>
+              <tr key={order.order_id}>
+                <td>{order.order_id}</td>
+                <td>{order.customer_id}</td>
+                <td>{order.customer_name}</td>
+                <td>{order.yoyo_id}</td>
+                <td>{order.yoyo_name}</td>
+                <td>{order.quantity}</td>
+                <td>{order.total_price} VNĐ</td>
+                <td>{order.order_date}</td>
+                <td>{order.status}</td>
               </tr>
             ))}
           </tbody>

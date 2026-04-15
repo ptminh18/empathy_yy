@@ -1,12 +1,12 @@
-@font-face {
+/* @font-face {
   font-family: "Noto Sans";
   src: url("./assets/fonts/noto-sans/NotoSans-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */
 * {
   background-color: black;
-  font-family: "Noto Sans", system-ui, "Segoe UI", Roboto, sans-serif;
+  /* font-family: "Noto Sans", system-ui, "Segoe UI", Roboto, sans-serif; */
   color: #bfbfbf;
 }

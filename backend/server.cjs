@@ -149,6 +149,17 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.get("/api/orders", async (req, res) => {
+  try {
+    let pool = await sql.connect(config);
+    let result = await pool.request().query("SELECT * FROM Orders");
+    res.json(result.recordset);
+  } catch (err) {
+    console.error("Lỗi truy vấn SQL:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Route kiểm tra server
 app.get("/", (req, res) => {
   res.send("Server Empathy Yoyo đang hoạt động!");
@@ -161,4 +172,5 @@ app.listen(PORT, "0.0.0.0", () => {
   console.log(`Dữ liệu players tại: http://localhost:${PORT}/api/players`);
   console.log(`Đăng nhập tại: POST http://localhost:${PORT}/api/login`);
   console.log(`Đăng ký tại: POST http://localhost:${PORT}/api/register`);
+  console.log(`Đơn hàng tại: http://localhost:${PORT}/api/orders`);
 });
