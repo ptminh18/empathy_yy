@@ -1,7 +1,7 @@
 "use client";
 
 import "./ProductList.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 // const ProductCard = (item) => {
 //   return (
@@ -20,29 +20,29 @@ import { useEffect, useState } from "react";
 //   );
 // };
 // Main List Component
-const ProductList = () => {
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+const ProductList = ({ products }) => {
+  // const [loading, setLoading] = useState(true);
+  // const [products, setProducts] = useState([]);
   const productCount = products.length;
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8080/api/products")
-      .then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Dữ liệu nhận được từ Backend:", data); // Xem ở F12 Trình duyệt
-        const finalData = Array.isArray(data) ? data : data.recordset || [];
-        setProducts(finalData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Lỗi kết nối API:", err);
-        setLoading(false);
-      });
-  }, []);
-  if (loading) return <p>yoyo list is loading</p>;
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8080/api/products")
+  //     .then((res) => {
+  //       if (!res.ok) throw new Error("Network response was not ok");
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       console.log("Dữ liệu nhận được từ Backend:", data); // Xem ở F12 Trình duyệt
+  //       const finalData = Array.isArray(data) ? data : data.recordset || [];
+  //       setProducts(finalData);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Lỗi kết nối API:", err);
+  //       setLoading(false);
+  //     });
+  // }, []);
+  // if (loading) return <p>yoyo list is loading</p>;
   return (
     <>
       <div className="filter-and-product-count">

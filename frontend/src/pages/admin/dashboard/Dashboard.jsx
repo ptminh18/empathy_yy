@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Header from "../../../layouts/Header/Header.jsx";
+import Footer from "../../../layouts/Footer/Footer.jsx";
 
 import "./Dashboard.css"; // Optional: for styling
 const Dashboard = () => {
@@ -32,41 +34,45 @@ const Dashboard = () => {
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
-    <div className="dashboard">
-      <h1>📊 Sales Report Dashboard</h1>
-      <div className="sales-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer ID</th>
-              <th>Customer Name</th>
-              <th>Yoyo ID</th>
-              <th>Yoyo Name</th>
-              <th>Quantity</th>
-              <th>Total Price</th>
-              <th>Order Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {salesData.map((order) => (
-              <tr key={order.order_id}>
-                <td>{order.order_id}</td>
-                <td>{order.customer_id}</td>
-                <td>{order.customer_name}</td>
-                <td>{order.yoyo_id}</td>
-                <td>{order.yoyo_name}</td>
-                <td>{order.quantity}</td>
-                <td>{order.total_price} VNĐ</td>
-                <td>{order.order_date}</td>
-                <td>{order.status}</td>
+    <>
+      <div className="dashboard">
+        <h1>Sales Report Dashboard</h1>
+        <div className="sales-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Yoyo ID</th>
+                <th>Yoyo Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Order Date</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {salesData.map((order) => (
+                <tr key={order.order_id}>
+                  <td>{order.id}</td>
+                  <td>{order.customer_id}</td>
+                  <td>{order.customer_name}</td>
+                  <td>{order.yoyo_id}</td>
+                  <td>{order.yoyo_name}</td>
+                  <td>{order.quantity}</td>
+                  <td>{order.total_price} VNĐ</td>
+                  <td>
+                    {new Date(order.date).toLocaleDateString("en-GB")}
+                  </td>{" "}
+                  <td>{order.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

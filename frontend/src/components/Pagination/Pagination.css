@@ -1,0 +1,36 @@
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.page-btn,
+.nav-btn {
+  padding: 8px 14px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 999px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.page-btn:hover,
+.nav-btn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.page-btn.active {
+  color: white;
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
