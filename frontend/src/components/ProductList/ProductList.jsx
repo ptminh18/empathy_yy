@@ -53,7 +53,8 @@ const ProductList = ({ products }) => {
         {products.map((item) => (
           <div className="product-card" key={item.id}>
             <div className="image-container">
-              <img src={item.image} alt={item.name} />
+              <img src={item.image_main} alt={item.name} />
+              <img src={item.image_1} alt={item.name} className="img-hover" />
               {item.stock <= 0 && <span className="badge">Sold out</span>}
             </div>
             <div className="product-information">
