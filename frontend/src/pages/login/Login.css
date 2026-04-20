@@ -39,7 +39,7 @@
 }
 
 .btn-sign-in {
-  background-color: #940001;
+  background-color: #940001 !important;
   align-self: center;
   color: #fff;
   border: none;
@@ -49,6 +49,7 @@
   cursor: pointer;
   margin-top: 10px;
   transition: background 0.3s;
+  border-radius: 2px;
 }
 /* 
 .btn-sign-in:hover {

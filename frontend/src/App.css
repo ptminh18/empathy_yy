@@ -6,7 +6,8 @@
   font-display: swap;
 } */
 * {
-  background-color: black;
+  background-color: black !important;
+  /* background-color: white !important */
   /* font-family: "Noto Sans", system-ui, "Segoe UI", Roboto, sans-serif; */
   color: #bfbfbf;
 }

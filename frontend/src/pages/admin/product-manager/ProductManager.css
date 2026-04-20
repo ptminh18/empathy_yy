@@ -1,0 +1,116 @@
+.admin-container {
+  padding: 40px;
+  color: #333333 !important;
+  min-height: 100vh;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.admin-title {
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.btn-add {
+  background-color: #1a2027;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-add:hover {
+  background-color: #444;
+}
+
+.table-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 2px solid #eee;
+}
+
+.admin-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-table tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.img-preview {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: block;
+}
+
+.file-input {
+  border: 2px dashed #ccc !important;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  background: #1a2027;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}

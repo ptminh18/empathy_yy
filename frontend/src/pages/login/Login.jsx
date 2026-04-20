@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../Layouts/Header/Header.jsx";
-import Footer from "../../Layouts/Footer/Footer.jsx";
+import Header from "../../layouts/Header/Header.jsx";
+import Footer from "../../layouts/Footer/Footer.jsx";
 import "./Login.css";
 
 const Login = () => {
@@ -32,7 +32,7 @@ const Login = () => {
 
         // Case 1: Admin user
         if (data.user.is_admin === 1 || data.user.is_admin === true) {
-          navigate("/admin/dashboard");
+          navigate("/admin/product-manager");
         }
         // Case 2: Regular user
         else {

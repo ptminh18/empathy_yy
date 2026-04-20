@@ -75,7 +75,7 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background: #fff;
+  background: #fff !important;
   color: #000;
   padding: 4px 12px;
   border-radius: 20px;

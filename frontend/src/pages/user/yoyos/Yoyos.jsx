@@ -63,7 +63,7 @@ function YoyosPage() {
             />
           </>
         ) : (
-          <div className="loading-state">Đang nạp danh sách sản phẩm...</div>
+          <div className="loading-state">Product Uploading...</div>
         )}
       </div>
       <Footer />

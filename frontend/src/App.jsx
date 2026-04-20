@@ -7,7 +7,9 @@ import ContactPage from "./pages/user/contact/Contact.jsx";
 import LoginPage from "./pages/login/Login";
 import RegisterPage from "./pages/register/Register.jsx";
 import Dashboard from "./pages/admin/dashboard/Dashboard.jsx";
-import { BrowserRouter, Routes, Route } from "react-router";
+import ProductManager from "./pages/admin/product-manager/ProductManager.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 // import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/product-manager" element={<ProductManager />} />
         </Routes>
       </BrowserRouter>
     </>
