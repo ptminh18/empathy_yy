@@ -34,7 +34,10 @@ function TeamPage() {
             <>
               <div className="player-container">
                 <div className="player-image-container">
-                  <img src={item.image} alt={item.name} />
+                  <img
+                    src={`http://127.0.0.1:8080${item.image}`}
+                    alt={item.name}
+                  />
                 </div>
                 <div className="player-information">
                   <div className="player-name">

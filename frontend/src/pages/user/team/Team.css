@@ -55,7 +55,7 @@ h2 {
   font-size: xx-large;
 }
 .player-signature a {
-  background-color: #940001;
+  background-color: #940001 !important;
   color: white;
   padding: 10px 25px;
   font-size: 1.1rem;

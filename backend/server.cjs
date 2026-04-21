@@ -20,6 +20,11 @@ app.use(
   "/uploads/yoyos",
   express.static(path.join(__dirname, "uploads/yoyos")),
 );
+// cho phép truy cập ảnh players
+app.use(
+  "/uploads/players",
+  express.static(path.join(__dirname, "uploads/players")),
+);
 // =============================
 // DATABASE CONFIG
 // =============================
@@ -41,15 +46,12 @@ const config = {
 // =============================
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/yoyos/");
-  },
+  destination: "uploads/yoyos",
   filename: (req, file, cb) => {
-    const uniqueName = Date.now() + "-" + file.originalname;
-    cb(null, uniqueName);
+    const unique = Date.now() + "-" + file.originalname;
+    cb(null, unique);
   },
 });
-
 const upload = multer({ storage });
 
 // =============================
@@ -80,38 +82,31 @@ app.get("/api/products", async (req, res) => {
 });
 
 // =============================
+// GET PLAYERS
+// =============================
+app.get("/api/players", async (req, res) => {
+  try {
+    let pool = await sql.connect(config);
+
+    let result = await pool.request().query(`
+  SELECT
+    id,
+    name,
+    translator_name,
+    image,
+    signature_model,
+    signature_link
+  FROM Players
+`);
+    res.json(result.recordset);
+  } catch (err) {
+    console.error("SQL ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+// =============================
 // ADD PRODUCT
 // =============================
-
-// app.post("/api/products", upload.single("image"), async (req, res) => {
-//   try {
-//     const name = req.body.name;
-//     const price = parseFloat(req.body.price);
-//     const stock = parseInt(req.body.stock);
-
-//     const imagePath = req.file ? "/uploads/yoyos/" + req.file.filename : null;
-
-//     let pool = await sql.connect(config);
-
-//     await pool
-//       .request()
-//       .input("name", sql.NVarChar(255), name)
-//       .input("price", sql.Decimal(18, 2), price)
-//       .input("stock", sql.Int, stock)
-//       .input("image_main", sql.NVarChar(sql.MAX), imagePath).query(`
-//         INSERT INTO Yoyos (name, price, stock, image_main, image_1, image_2)
-//         VALUES (@name, @price, @stock, @image_main, NULL, NULL)
-//       `);
-
-//     res.json({
-//       success: true,
-//       message: "Product added successfully",
-//     });
-//   } catch (err) {
-//     console.error("ADD PRODUCT ERROR:", err);
-//     res.status(500).json({ error: err.message });
-//   }
-// });
 app.post(
   "/api/products",
   upload.fields([
@@ -121,11 +116,15 @@ app.post(
   ]),
   async (req, res) => {
     try {
+      const pool = await sql.connect(config);
+
       const { name, price, stock, description } = req.body;
 
-      const image_main = req.files.image_main
-        ? `/uploads/yoyos/${req.files.image_main[0].filename}`
-        : null;
+      if (!req.files.image_main) {
+        return res.status(400).json({ error: "Main image is required" });
+      }
+
+      const image_main = `/uploads/yoyos/${req.files.image_main[0].filename}`;
 
       const image_1 = req.files.image_1
         ? `/uploads/yoyos/${req.files.image_1[0].filename}`
@@ -140,53 +139,26 @@ app.post(
         .input("name", sql.NVarChar(255), name)
         .input("price", sql.Decimal(18, 2), price)
         .input("stock", sql.Int, stock)
+        .input("description", sql.NVarChar(sql.MAX), description)
         .input("image_main", sql.NVarChar(500), image_main)
         .input("image_1", sql.NVarChar(500), image_1)
-        .input("image_2", sql.NVarChar(500), image_2)
-        .input("description", sql.NVarChar(sql.MAX), description).query(`
+        .input("image_2", sql.NVarChar(500), image_2).query(`
           INSERT INTO Yoyos
-          (name, price, stock, image_main, image_1, image_2, description)
+          (name, price, stock, description, image_main, image_1, image_2)
           VALUES
-          (@name, @price, @stock, @image_main, @image_1, @image_2, @description)
+          (@name,@price,@stock,@description,@image_main,@image_1,@image_2)
         `);
 
       res.json({ success: true });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Server error" });
+      console.error("ADD ERROR:", err);
+      res.status(500).json({ error: err.message });
     }
   },
 );
-
-// =============================
-// DELETE PRODUCT
-// =============================
-
-// app.delete("/api/products/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     let pool = await sql.connect(config);
-
-//     await pool
-//       .request()
-//       .input("id", sql.Int, id)
-//       .query("DELETE FROM Yoyos WHERE id=@id");
-
-//     res.json({
-//       success: true,
-//       message: "Product deleted",
-//     });
-//   } catch (err) {
-//     console.error("DELETE ERROR:", err);
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
 // =============================
 // REGISTER
 // =============================
-
 app.post("/api/register", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -278,39 +250,6 @@ app.post("/api/login", async (req, res) => {
 // =============================
 // UPDATE PRODUCT
 // =============================
-// app.put("/api/products/:id", upload.single("image"), async (req, res) => {
-//   try {
-//     const name = req.body.name;
-//     const price = parseFloat(req.body.price);
-//     const stock = parseInt(req.body.stock);
-//     const { id } = req.params;
-
-//     const imagePath = req.file ? "/uploads/yoyos/" + req.file.filename : null;
-
-//     let pool = await sql.connect(config);
-
-//     await pool
-//       .request()
-//       .input("id", sql.Int, id)
-//       .input("name", sql.NVarChar(255), name)
-//       .input("price", sql.Decimal(18, 2), price)
-//       .input("stock", sql.Int, stock)
-//       .input("image", sql.NVarChar(sql.MAX), imagePath).query(`
-//         UPDATE Yoyos
-//         SET
-//           name=@name,
-//           price=@price,
-//           stock=@stock,
-//           image_main=ISNULL(@image,image_main)
-//         WHERE id=@id
-//       `);
-
-//     res.json({ success: true });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: err.message });
-//   }
-// });
 app.put(
   "/api/products/:id",
   upload.fields([
@@ -320,6 +259,8 @@ app.put(
   ]),
   async (req, res) => {
     try {
+      const pool = await sql.connect(config);
+
       const { id } = req.params;
       const { name, price, stock, description } = req.body;
 
@@ -341,67 +282,61 @@ app.put(
         .input("name", sql.NVarChar(255), name)
         .input("price", sql.Decimal(18, 2), price)
         .input("stock", sql.Int, stock)
+        .input("description", sql.NVarChar(sql.MAX), description)
         .input("image_main", sql.NVarChar(500), image_main)
         .input("image_1", sql.NVarChar(500), image_1)
-        .input("image_2", sql.NVarChar(500), image_2)
-        .input("description", sql.NVarChar(sql.MAX), description).query(`
+        .input("image_2", sql.NVarChar(500), image_2).query(`
           UPDATE Yoyos
           SET
             name=@name,
             price=@price,
             stock=@stock,
-            image_main=COALESCE(@image_main,image_main),
-            image_1=COALESCE(@image_1,image_1),
-            image_2=COALESCE(@image_2,image_2),
-            description=@description
+            description=@description,
+            image_main = COALESCE(@image_main,image_main),
+            image_1 = COALESCE(@image_1,image_1),
+            image_2 = COALESCE(@image_2,image_2)
           WHERE id=@id
         `);
 
       res.json({ success: true });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Server error" });
+      console.error("UPDATE ERROR:", err);
+      res.status(500).json({ error: err.message });
     }
   },
 );
-
 // ============================
 // DELETE PRODUCT
 // ============================
 app.delete("/api/products/:id", async (req, res) => {
   try {
+    const pool = await sql.connect(config);
     const { id } = req.params;
 
-    let pool = await sql.connect(config);
-
-    // 1. lấy đường dẫn ảnh
     const result = await pool.request().input("id", sql.Int, id).query(`
-        SELECT image_main
-        FROM Yoyos
-        WHERE id=@id
-      `);
+      SELECT image_main,image_1,image_2
+      FROM Yoyos
+      WHERE id=@id
+    `);
 
-    const imagePath = result.recordset[0]?.image_main;
+    const product = result.recordset[0];
 
-    // 2. xóa file trong uploads
-    if (imagePath) {
-      const fullPath = "." + imagePath;
+    const images = [product.image_main, product.image_1, product.image_2];
 
-      if (fs.existsSync(fullPath)) {
-        fs.unlinkSync(fullPath);
+    images.forEach((img) => {
+      if (img) {
+        const filePath = "." + img;
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
       }
-    }
-
-    // 3. xóa record trong database
-    await pool.request().input("id", sql.Int, id).query(`
-        DELETE FROM Yoyos
-        WHERE id=@id
-      `);
-
-    res.json({
-      success: true,
-      message: "Product deleted",
     });
+
+    await pool.request().input("id", sql.Int, id).query(`
+      DELETE FROM Yoyos WHERE id=@id
+    `);
+
+    res.json({ success: true });
   } catch (err) {
     console.error("DELETE ERROR:", err);
     res.status(500).json({ error: err.message });

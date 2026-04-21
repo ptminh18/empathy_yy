@@ -72,6 +72,10 @@ const ProductManager = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!editingId && !formData.image_main) {
+      alert("Main image is required");
+      return;
+    }
     const data = new FormData();
     data.append("name", formData.name);
     data.append("price", formData.price);
