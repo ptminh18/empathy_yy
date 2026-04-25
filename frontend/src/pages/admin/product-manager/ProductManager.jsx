@@ -4,11 +4,13 @@ import "./ProductManager.css";
 
 const ProductManager = () => {
   const [products, setProducts] = useState([]);
+  const [colors, setColors] = useState([]);
   const [open, setOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
   const [formData, setFormData] = useState({
     name: "",
+    color: "",
     price: "",
     stock: "",
     description: "",
@@ -27,8 +29,19 @@ const ProductManager = () => {
     }
   };
 
+  const fetchColors = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8080/api/colors");
+      const data = await res.json();
+      setColors(data);
+    } catch (err) {
+      console.error("Lỗi lấy dữ liệu:", err);
+    }
+  };
+
   useEffect(() => {
     fetchProducts();
+    fetchColors();
   }, []);
 
   const handleInputChange = (e) => {
@@ -56,6 +69,7 @@ const ProductManager = () => {
     setEditingId(product.id);
     setFormData({
       name: product.name,
+      color: product.color,
       price: product.price,
       stock: product.stock,
       description: product.description || "",
@@ -78,6 +92,7 @@ const ProductManager = () => {
     }
     const data = new FormData();
     data.append("name", formData.name);
+    data.append("color", formData.color);
     data.append("price", formData.price);
     data.append("stock", formData.stock);
     data.append("description", formData.description || "");
@@ -106,6 +121,7 @@ const ProductManager = () => {
         // Reset form sạch sẽ
         setFormData({
           name: "",
+          color: "",
           price: "",
           stock: "",
           description: "",
@@ -163,6 +179,7 @@ const ProductManager = () => {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Color</th>
               <th>Image</th>
               <th>Name</th>
               <th>Price</th>
@@ -225,7 +242,16 @@ const ProductManager = () => {
                   onChange={handleInputChange}
                   required
                 />
-
+                <label>Color</label>
+                <div>
+                  <input
+                    name="color"
+                    type="checkbox"
+                    value={formData.color}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
                 <label>Price (VNĐ)</label>
                 <input
                   name="price"

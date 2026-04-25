@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router";
 import "./ProductList.css";
 // import { useEffect, useState } from "react";
 
@@ -51,24 +52,30 @@ const ProductList = ({ products }) => {
       </div>
       <div className="product-grid">
         {products.map((item) => (
-          <div className="product-card" key={item.id}>
-            <div className="image-container">
-              <img
-                src={`http://127.0.0.1:8080${item.image_main}`}
-                alt={item.name}
-              />
-              <img
-                src={`http://127.0.0.1:8080${item.image_1}`}
-                alt={item.name}
-                className="img-hover"
-              />
-              {item.stock <= 0 && <span className="badge">Sold out</span>}
+          <Link
+            to={`/products/${item.id}`}
+            key={item.id}
+            className="product-link"
+          >
+            <div className="product-card" key={item.id}>
+              <div className="image-container">
+                <img
+                  src={`http://127.0.0.1:8080${item.image_main}`}
+                  alt={item.name}
+                />
+                <img
+                  src={`http://127.0.0.1:8080${item.image_1}`}
+                  alt={item.name}
+                  className="img-hover"
+                />
+                {item.stock <= 0 && <span className="badge">Sold out</span>}
+              </div>
+              <div className="product-information">
+                <h5 className="product-name">{item.name}</h5>
+                <p className="price">{item.price.toLocaleString()} VND</p>
+              </div>
             </div>
-            <div className="product-information">
-              <h5 className="product-name">{item.name}</h5>
-              <p className="price">{item.price.toLocaleString()} VND</p>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

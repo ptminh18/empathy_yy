@@ -61,15 +61,56 @@ SET is_admin = 1
 WHERE email = 'theminhdangcode@gmail.com';
 
 --  Create a table with informations
-CREATE TABLE [dbo].[Orders] (
-    [id]          INT             IDENTITY (1, 1) NOT NULL,
-    [yoyo_id]     INT             NOT NULL,
-    [quantity]    INT             NOT NULL,
-    [total_price] DECIMAL (18, 2) NOT NULL,
-    [order_date]  DATETIME        DEFAULT (getdate()) NULL,
-    [status]      NVARCHAR (50)   DEFAULT ('completed') NULL,
+CREATE TABLE Orders (
+    -- 1. Mã đơn hàng (Primary Key)
+    [id]            INT             IDENTITY (1, 1) NOT NULL,
+    
+    -- 2. Thông tin khách hàng
+    [customer_id]   INT             NOT NULL, -- Foreign Key trỏ đến Accounts(Id)
+    [customer_name] NVARCHAR (255)  NOT NULL, -- Tên khách hàng tại thời điểm mua
+    
+    -- 3. Thông tin sản phẩm
+    [yoyo_id]       INT             NOT NULL, -- Foreign Key trỏ đến Yoyos(id)
+    [yoyo_name]     NVARCHAR (255)  NOT NULL, -- Lưu tên để làm lịch sử (tránh việc yoyo đổi tên sau này)
+    
+    -- 4. Chi tiết giao dịch
+    [quantity]      INT             DEFAULT ((1)) NOT NULL,
+    [total_price]   DECIMAL (18, 2) NOT NULL, -- (Nên có) Tổng tiền của dòng hàng này
+    [date]          DATETIME        DEFAULT (getdate()) NULL,
+    
+    -- 5. Trạng thái đơn hàng
+    -- Ví dụ: 'Pending', 'Completed', 'Cancelled'
+    [status]        NVARCHAR (50)   DEFAULT (N'Pending') NULL,
+
     PRIMARY KEY CLUSTERED ([id] ASC),
-    FOREIGN KEY ([yoyo_id]) REFERENCES [dbo].[Yoyos] ([id])
+    
+    -- Thiết lập Khóa ngoại kết nối với bảng Accounts
+    CONSTRAINT [FK_Orders_Accounts] FOREIGN KEY ([customer_id]) 
+        REFERENCES [dbo].[Accounts] ([Id]),
+        
+    -- Thiết lập Khóa ngoại kết nối với bảng Yoyos
+    CONSTRAINT [FK_Orders_Yoyos] FOREIGN KEY ([yoyo_id]) 
+        REFERENCES [dbo].[Yoyos] ([id])
 );
 -- Delete a table
 DROP TABLE Orders;
+
+-- Format getdate() to dd/MM/yyyy
+SELECT CONVERT(varchar, GETDATE(), 103) AS FormattedDate;
+
+-- I don't know
+sp_help Yoyos
+
+-- UNIQUE checker
+SELECT 
+    i.name AS index_name,
+    c.name AS column_name
+FROM sys.indexes i
+JOIN sys.index_columns ic ON i.object_id = ic.object_id AND i.index_id = ic.index_id
+JOIN sys.columns c ON ic.object_id = c.object_id AND ic.column_id = c.column_id
+WHERE i.is_unique = 1
+AND OBJECT_NAME(i.object_id) = 'Yoyos';
+
+-- Delete a row from UNIQUE
+ALTER TABLE Yoyos
+DROP CONSTRAINT UQ__tmp_ms_x__32DD1E4C8C58DB01;

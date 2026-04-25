@@ -81,6 +81,28 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
+// ============================
+// GET COLORS
+// ============================
+app.get("/api/colors", async (req, res) => {
+  try {
+    let pool = await sql.connect(config);
+
+    let result = await pool.request().query(`
+  SELECT
+    id,
+    color_name,
+    url,
+    yoyo_name
+  FROM Colors
+`);
+    res.json(result.recordset);
+  } catch (err) {
+    console.error("SQL ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // =============================
 // GET PLAYERS
 // =============================
@@ -339,6 +361,28 @@ app.delete("/api/products/:id", async (req, res) => {
     res.json({ success: true });
   } catch (err) {
     console.error("DELETE ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ============================
+// GET SINGLE PRODUCT
+// ============================
+app.get("/api/products/:id", async (req, res) => {
+  try {
+    const pool = await sql.connect(config);
+
+    const { id } = req.params;
+
+    const result = await pool.request().input("id", sql.Int, id).query(`
+        SELECT *
+        FROM Yoyos
+        WHERE id=@id
+      `);
+
+    res.json(result.recordset[0]);
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
