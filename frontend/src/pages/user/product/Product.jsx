@@ -8,26 +8,50 @@ import { useParams } from "react-router-dom";
 
 const ProductPage = () => {
   const { id } = useParams();
+  const API_BASE = "http://127.0.0.1:8080";
 
   const [product, setProduct] = useState(null);
+  const [colors, setColors] = useState([]);
   const [mainImage, setMainImage] = useState(null);
+  const [selectedColorName, setSelectedColorName] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  // 1. Fetch main product (Table Yoyos)
   useEffect(() => {
-    fetch(`http://127.0.0.1:8080/api/products/${id}`)
+    fetch(`${API_BASE}/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
+        // image_main is only a fallback — colors useEffect will override if colors exist
         setMainImage(data.image_main);
+        setSelectedColorName(data.color_default || data.name);
       })
       .catch((err) => console.error("Fetch product error:", err));
   }, [id]);
 
+  // 2. Fetch color variants (Table Yoyos_Colors)
+  // First color always becomes the default image, regardless of how many colors exist
+  useEffect(() => {
+    fetch(`${API_BASE}/api/color-images/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const colorList = Array.isArray(data) ? data : [data];
+        setColors(colorList);
+        if (colorList.length > 0) {
+          setMainImage(colorList[0].image);
+          setSelectedColorName(colorList[0].color);
+        }
+      })
+      .catch((err) => console.error("Fetch colors error:", err));
+  }, [id]);
+
   if (!product) return <p>Loading product...</p>;
 
-  const images = [product.image_main, product.image_1, product.image_2].filter(
-    Boolean,
-  );
+  const thumbnailImages = [
+    product.image_main,
+    product.image_1,
+    product.image_2,
+  ].filter(Boolean);
 
   return (
     <>
@@ -38,17 +62,22 @@ const ProductPage = () => {
         <div className="product-gallery">
           <img
             className="main-image"
-            src={`http://127.0.0.1:8080${mainImage}`}
+            src={`${API_BASE}${mainImage}`}
             alt={product.name}
           />
 
           <div className="thumbnail-row">
-            {images.map((img, i) => (
+            {thumbnailImages.map((img, i) => (
               <img
                 key={i}
-                src={`http://127.0.0.1:8080${img}`}
-                onClick={() => setMainImage(img)}
-                className="thumb"
+                src={`${API_BASE}${img}`}
+                onClick={() => {
+                  setMainImage(img);
+                  if (colors.length === 1)
+                    setSelectedColorName(colors[0].color);
+                }}
+                className={`thumb ${mainImage === img ? "active" : ""}`}
+                alt="thumbnail"
               />
             ))}
           </div>
@@ -58,36 +87,46 @@ const ProductPage = () => {
         <div className="product-info">
           <h1 className="product-title">{product.name}</h1>
 
-          <div className="product-price">
-            {product.price.toLocaleString()} VND
-            <span className="stock-status">
-              {product.stock > 0 ? "In stock" : "Sold out"}
+          <div className="price-container">
+            <span className="current-price">
+              {product.price?.toLocaleString()} VND
+            </span>
+            <span className="sold-out-badge">
+              {product.stock > 0 ? "" : "Sold out"}
             </span>
           </div>
+          <p className="tax-note">Tax included.</p>
 
-          {/* COLOR */}
           <div className="product-option">
-            <p>Color</p>
-            <button className="color-btn">polished baby blue</button>
+            <div className="color-pills">
+              {colors.map((colorItem, index) => (
+                <button
+                  key={index}
+                  className={`color-btn ${colors.length === 1 || mainImage === colorItem.image ? "selected" : ""}`}
+                  onClick={() => {
+                    setMainImage(colorItem.image);
+                    setSelectedColorName(colorItem.color);
+                  }}
+                >
+                  {colorItem.color}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* QUANTITY */}
           <div className="product-option">
             <p>Quantity</p>
-
             <div className="quantity-box">
               <button onClick={() => setQuantity((q) => (q > 1 ? q - 1 : 1))}>
                 -
               </button>
-
               <span>{quantity}</span>
-
               <button onClick={() => setQuantity((q) => q + 1)}>+</button>
             </div>
           </div>
 
           {/* BUTTONS */}
-
           <button
             className={`add-cart ${product.stock === 0 ? "disabled" : ""}`}
             disabled={product.stock === 0}
@@ -99,8 +138,7 @@ const ProductPage = () => {
 
           <div className="divider"></div>
 
-          {/* DESCRIPTION */}
-
+          {/* DESCRIPTION & SPECS */}
           <div className="description">
             <h3>Description</h3>
             <p>{product.description}</p>
@@ -108,16 +146,13 @@ const ProductPage = () => {
 
           <div className="divider"></div>
 
-          {/* SPECIFICATIONS */}
-
           <div className="specs">
             <h3>Specifications</h3>
-
-            <p>diameter: 54mm</p>
-            <p>width: 48.5mm</p>
-            <p>weight: 66.1g</p>
-            <p>gap width: 4.5mm</p>
-            <p>material: 7075 aluminium</p>
+            <p>diameter: {product.diameter}mm</p>
+            <p>width: {product.width}mm</p>
+            <p>weight: {product.weight}g</p>
+            <p>gap width: {product.gap_width}mm</p>
+            <p>material: {product.material}</p>
           </div>
         </div>
       </div>
