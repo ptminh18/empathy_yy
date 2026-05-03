@@ -54,13 +54,15 @@ body {
 
 .product-title {
   font-size: 48px;
-  font-weight: 400;
+  /* font-weight: 400; */
   margin-bottom: 10px;
   letter-spacing: -1px;
 }
 
 .price-container {
+  font-weight: bold;
   font-size: 20px;
+  margin-top: 20px;
   margin-bottom: 5px;
 }
 
@@ -190,4 +192,9 @@ body {
   color: #ccc;
   margin: 5px 0;
   font-size: 14px;
+}
+.related-products-title {
+  padding-top: 30px;
+  /* display: flex; */
+  /* justify-content: flex-start; */
 }

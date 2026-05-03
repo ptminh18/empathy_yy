@@ -3,6 +3,7 @@
 import "./Product.css";
 import Header from "../../../layouts/Header/Header.jsx";
 import Footer from "../../../layouts/Footer/Footer.jsx";
+import ProductCard from "../../../components/ProductCard/ProductCard.jsx";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const ProductPage = () => {
   const [mainImage, setMainImage] = useState(null);
   const [selectedColorName, setSelectedColorName] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   // 1. Fetch main product (Table Yoyos)
   useEffect(() => {
@@ -22,7 +24,6 @@ const ProductPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
-        // image_main is only a fallback — colors useEffect will override if colors exist
         setMainImage(data.image_main);
         setSelectedColorName(data.color_default || data.name);
       })
@@ -30,7 +31,6 @@ const ProductPage = () => {
   }, [id]);
 
   // 2. Fetch color variants (Table Yoyos_Colors)
-  // First color always becomes the default image, regardless of how many colors exist
   useEffect(() => {
     fetch(`${API_BASE}/api/color-images/${id}`)
       .then((res) => res.json())
@@ -43,6 +43,18 @@ const ProductPage = () => {
         }
       })
       .catch((err) => console.error("Fetch colors error:", err));
+  }, [id]);
+
+  // 3. Fetch related products — all products, exclude current, pick 4 random
+  useEffect(() => {
+    fetch(`${API_BASE}/api/products`)
+      .then((res) => res.json())
+      .then((data) => {
+        const others = data.filter((p) => p.id !== parseInt(id));
+        const shuffled = others.sort(() => Math.random() - 0.5);
+        setRelatedProducts(shuffled.slice(0, 4));
+      })
+      .catch((err) => console.error("Fetch related products error:", err));
   }, [id]);
 
   if (!product) return <p>Loading product...</p>;
@@ -148,14 +160,34 @@ const ProductPage = () => {
 
           <div className="specs">
             <h3>Specifications</h3>
-            <p>diameter: {product.diameter}mm</p>
-            <p>width: {product.width}mm</p>
-            <p>weight: {product.weight}g</p>
-            <p>gap width: {product.gap_width}mm</p>
-            <p>material: {product.material}</p>
+            <p>
+              <b>diameter:</b> {product.diameter}mm
+            </p>
+            <p>
+              <b>width:</b> {product.width}mm
+            </p>
+            <p>
+              <b>weight:</b> {product.weight}g
+            </p>
+            <p>
+              <b>gap width:</b> {product.gap_width}mm
+            </p>
+            <p>
+              <b>material:</b> {product.material}
+            </p>
           </div>
         </div>
       </div>
+
+      {/* RELATED PRODUCTS */}
+      {relatedProducts.length > 0 && (
+        <div className="related-products">
+          <div className="related-products-title">
+            <h2>You may also like</h2>
+          </div>
+          <ProductCard products={relatedProducts} />
+        </div>
+      )}
 
       <Footer />
     </>
