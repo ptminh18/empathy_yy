@@ -1,0 +1,44 @@
+BEGIN:VCALENDAR
+CALSCALE:GREGORIAN
+VERSION:2.0
+PRODID:'-//ByteDance Inc// Calendar
+METHOD:REQUEST
+BEGIN:VEVENT
+UID:e3bad4c7-8e5c-45fe-9803-7d26ab593e3a
+SUMMARY:Phan The Minh and Kien | KimQ: Product builder interview
+DESCRIPTION:Video: https://vc-jp.larksuite.com/j/509104556\nMeeting ID:
+  \n<div style="white-space: pre-wrap\;" data-zone-id="0" 
+ data-line-index="0" data-line="true"><b>Event name</b>: Product builder 
+ interview</div><div style="white-space: pre-wrap\;" data-zone-id="0" 
+ data-line-index="1" data-line="true"></div><div style="white-space: 
+ pre-wrap\;" data-zone-id="0" data-line-index="2" data-line="true">Need to 
+ make changes to this event?</div><div style="white-space: pre-wrap\;" 
+ data-zone-id="0" data-line-index="3" data-line="true"><a href="https:
+ //ljpph4gg0hst.jp.larksuite.com/scheduler/cancellations/94c0848560e4408591
+ 7968d2494e71881d0a5a71659f430e9188" linkid="UMyoOEq2qK" target="_blank" 
+ rel="noopener noreferrer">Cancel</a></div><div style="white-space: 
+ pre-wrap\;" data-zone-id="0" data-line-index="4" data-line="true"><a 
+ href="https:
+ //ljpph4gg0hst.jp.larksuite.com/scheduler/reschedulings/94c0848560e4408591
+ 7968d2494e71881d0a5a71659f430e9188" linkid="7yAkmNR2ZG" target="_blank" 
+ rel="noopener noreferrer">Reschedule</a></div>
+CREATED:20260503T080203Z
+DTSTART:20260506T090000Z
+DTEND:20260506T093000Z
+LAST-MODIFIED:00010101T000000Z
+DTSTAMP:20260503T080203Z
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+SEQUENCE:0
+ORGANIZER;ROLE=CHAIR;CN=k@kimq.tech:MAILTO:k@kimq.tech
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CUTYPE=INDIVIDUAL;CN=Kien | KimQ;
+ PARTSTAT=ACCEPTED:MAILTO:k@kimq.tech
+ATTENDEE;ROLE=REQ-PARTICIPANT;RSVP=TRUE;CUTYPE=INDIVIDUAL;
+ PARTSTAT=NEEDS-ACTION:MAILTO:theminhdangcode@gmail.com
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT5M
+DESCRIPTION:Event Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
