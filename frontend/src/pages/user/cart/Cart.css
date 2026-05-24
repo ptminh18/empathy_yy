@@ -1,7 +1,4 @@
-/* ==============================
-   CART PAGE
-   ============================== */
-
+/* Cart Page */
 .cart-container {
   width: 60vw;
   margin: 60px auto;
@@ -15,7 +12,6 @@
   letter-spacing: -1px;
 }
 
-/* EMPTY STATE */
 .cart-empty {
   text-align: center;
   padding: 80px 0;
@@ -38,7 +34,6 @@
   border-color: #fff;
 }
 
-/* CART ITEMS */
 .cart-items {
   display: flex;
   flex-direction: column;
@@ -59,10 +54,12 @@
   height: 100px;
   object-fit: cover;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .cart-item-info {
   flex: 1;
+  min-width: 0;
 }
 
 .cart-item-name {
@@ -82,12 +79,12 @@
   color: #ccc;
 }
 
-/* QUANTITY BOX — reuses same style as Product page */
 .cart-item-controls {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 12px;
+  flex-shrink: 0;
 }
 
 .quantity-box {
@@ -126,7 +123,6 @@
   color: #fff;
 }
 
-/* SUMMARY */
 .cart-summary {
   border-top: 1px solid #333;
   padding-top: 30px;
@@ -151,4 +147,72 @@
 .paypal-wrapper {
   max-width: 400px;
   margin-left: auto;
+}
+
+/* ==============================
+   RESPONSIVE — TABLET (≤768px)
+   ============================== */
+@media (max-width: 768px) {
+  .cart-container {
+    width: 90vw;
+    margin: 40px auto;
+  }
+
+  .cart-title {
+    font-size: 28px;
+  }
+
+  .cart-item {
+    gap: 16px;
+  }
+
+  .cart-item-image {
+    width: 75px;
+    height: 75px;
+  }
+
+  .paypal-wrapper {
+    max-width: 100%;
+  }
+}
+
+/* ==============================
+   RESPONSIVE — MOBILE (≤480px)
+   ============================== */
+@media (max-width: 480px) {
+  .cart-container {
+    width: 92vw;
+    margin: 24px auto;
+  }
+
+  .cart-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  /* Stack image + info + controls vertically on small screens */
+  .cart-item {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .cart-item-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .cart-item-controls {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .cart-total {
+    font-size: 18px;
+  }
+
+  .quantity-box button {
+    padding: 8px 12px;
+  }
 }

@@ -1,4 +1,4 @@
-/* Tổng thể Layout */
+/* Base Layout */
 body {
   background-color: #000;
   color: #fff;
@@ -9,13 +9,12 @@ body {
   display: flex;
   width: 60vw;
   transform: translateX(34.2%);
-
   gap: 60px;
 }
 
-/* Bên trái: Gallery */
+/* Gallery */
 .product-gallery {
-  flex: 1.5; /* Chiếm khoảng 60% */
+  flex: 1.5;
 }
 
 .main-image {
@@ -29,10 +28,8 @@ body {
 
 .thumbnail-row {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Hai ảnh nhỏ nằm song song như trong hình */
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
-  /* cursor: default; */
-  /* pointer-events: none;  */
 }
 
 .thumb {
@@ -46,15 +43,14 @@ body {
   opacity: 1;
 }
 
-/* Bên phải: Thông tin sản phẩm */
+/* Product Info */
 .product-info {
-  flex: 1; /* Chiếm khoảng 40% */
+  flex: 1;
   text-align: left;
 }
 
 .product-title {
   font-size: 48px;
-  /* font-weight: 400; */
   margin-bottom: 10px;
   letter-spacing: -1px;
 }
@@ -84,7 +80,7 @@ body {
   color: #ccc;
 }
 
-/* Color Pills - Nút chọn màu */
+/* Color Pills */
 .color-pills {
   display: flex;
   flex-wrap: wrap;
@@ -95,23 +91,23 @@ body {
 .color-btn {
   background-color: transparent;
   color: #ffffff !important;
-  border: 1px solid #444; /* Viền xám tối khi chưa chọn */
+  border: 1px solid #444;
   padding: 8px 20px;
   border-radius: 40px;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-transform: lowercase; /* Chữ thường giống như mẫu */
+  text-transform: lowercase;
 }
 
 .color-btn.selected {
-  background-color: #ffffff; /* Nền trắng */
-  color: #000000; /* Chữ đen */
+  background-color: #ffffff;
+  color: #000000;
   border-color: #ffffff;
 }
 
 .color-btn:hover:not(.selected) {
-  border-color: #fff; /* Hover thì sáng viền lên */
+  border-color: #fff;
 }
 
 /* Quantity Box */
@@ -143,7 +139,7 @@ body {
 .add-cart {
   width: 100%;
   background: transparent;
-  color: #832727; /* Màu đỏ sẫm cho Sold Out như hình */
+  color: #832727;
   border: 1px solid #332222;
   padding: 15px;
   margin-bottom: 15px;
@@ -153,7 +149,7 @@ body {
 
 .buy-shop {
   width: 100%;
-  background-color: #2d1f7a; /* Màu tím đặc trưng của Shop Pay */
+  background-color: #2d1f7a;
   color: #fff;
   border: none;
   padding: 15px;
@@ -162,16 +158,6 @@ body {
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 20px;
-}
-
-.more-payment-options {
-  display: block;
-  text-align: center;
-  font-size: 13px;
-  color: #fff;
-  text-decoration: underline;
-  margin-bottom: 40px;
-  cursor: pointer;
 }
 
 /* Divider & Specs */
@@ -193,8 +179,70 @@ body {
   margin: 5px 0;
   font-size: 14px;
 }
+
 .related-products-title {
   padding-top: 30px;
-  /* display: flex; */
-  /* justify-content: flex-start; */
+}
+
+/* ==============================
+   RESPONSIVE — TABLET (≤1024px)
+   ============================== */
+@media (max-width: 1024px) {
+  .product-container {
+    width: 80vw;
+    transform: translateX(12%);
+    gap: 40px;
+  }
+}
+
+/* ==============================
+   RESPONSIVE — MOBILE (≤768px)
+   ============================== */
+@media (max-width: 768px) {
+  .product-container {
+    flex-direction: column; /* stack gallery above info */
+    width: 90vw;
+    transform: none;
+    margin: 0 auto;
+    gap: 24px;
+    padding: 20px 0;
+  }
+
+  .product-gallery {
+    flex: none;
+    width: 100%;
+  }
+
+  .product-info {
+    flex: none;
+    width: 100%;
+  }
+
+  .product-title {
+    font-size: 32px;
+  }
+
+  .main-image {
+    max-height: 60vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-title {
+    font-size: 26px;
+  }
+
+  .price-container {
+    font-size: 17px;
+  }
+
+  .quantity-box button {
+    padding: 10px 14px;
+  }
+
+  .add-cart,
+  .buy-shop {
+    font-size: 15px;
+    padding: 13px;
+  }
 }

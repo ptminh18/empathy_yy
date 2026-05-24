@@ -181,3 +181,17 @@
 .search-sold-out {
   color: #f44336;
 }
+
+/* ==============================
+   RESPONSIVE — MOBILE (≤480px)
+   ============================== */
+@media (max-width: 480px) {
+  .search-input-row.visible {
+    width: 160px;
+  }
+
+  .search-dropdown {
+    width: 92vw;
+    right: -40px;
+  }
+}

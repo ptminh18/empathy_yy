@@ -1,17 +1,25 @@
 .upper-header {
-  transform: translateY(-15px);
   background-color: black;
+  text-align: center;
+  position: relative;
+  z-index: 9999;
 }
+
 h5 {
   color: white;
   font-size: small;
   font-weight: 400;
+  margin: 0;
+  padding: 6px 0;
 }
+
+/* ==============================
+   DESKTOP HEADER
+   ============================== */
 .header {
   position: sticky;
-  top: 13px;
+  top: 0;
   height: 60px;
-  transform: translateY(-15px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,40 +27,285 @@ h5 {
   border-top: 1px solid #232323;
   padding-left: 20vw;
   padding-right: 20vw;
-  margin-top: -10px;
   z-index: 9999;
+  background-color: #000;
 }
-.menu {
-  gap: 30px;
+
+.header-left {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
   align-items: center;
   font-size: small;
   font-weight: bold;
 }
+
+/* CENTER logo */
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-header {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+  background-color: black;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
+}
+
+.logo-header.smaller {
+  width: 60px;
+  height: 36px;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
 a {
   color: #bfbfbf;
   text-decoration: none;
 }
+
 a:hover {
   color: #bfbfbf;
   text-decoration: underline;
 }
-.nav-icons {
+
+/* Hamburger Setup */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+/* ==============================
+   MOBILE OVERLAY & TRANSITIONS
+   ============================== */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9990;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mobile-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 75vw;
+  max-width: 320px;
+  background: #000;
+  z-index: 9998;
   display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  padding-top: 80px;
+
+  /* BASE STATE: Hidden completely off-screen by default */
+  transform: translateX(-100%);
+}
+
+/* 🪄 ALLOW ANIMATION: Only applied after React confirms the component has painted */
+.mobile-nav.allow-animation {
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* OPEN STATE: Appended when user clicks the hamburger */
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 8vw;
+  gap: 0;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.mobile-nav-links a {
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0;
+  padding: 16px 0;
+}
+
+.mobile-nav-links a:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.mobile-nav-bottom {
+  padding: 24px 8vw 40px;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+  border-top: 1px solid #333;
 }
-.logo-wrapper {
+
+.mobile-nav-login {
   display: flex;
-  width: 90px;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #fff !important;
+  text-decoration: none;
 }
-.logo-header {
-  background-color: black;
-  width: 80px;
-  height: 50px;
-  /* transition: width 0.3s ease; */
+
+.mobile-nav-login:hover {
+  text-decoration: none;
+  color: #ccc !important;
 }
-.logo-header.smaller {
-  width: 60px;
-  height: 30px;
+
+.mobile-nav-social {
+  display: flex;
+  gap: 16px;
+}
+
+.mobile-nav-social a {
+  color: #fff;
+  display: flex;
+}
+
+/* ==============================
+   RESPONSIVE — ≤768px
+   ============================== */
+@media (max-width: 768px) {
+  .header {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding-left: 4vw;
+    padding-right: 4vw;
+    height: 54px;
+  }
+
+  .logo-header {
+    width: 65px;
+    height: 40px;
+  }
+
+  .nav-icons {
+    gap: 14px;
+  }
+
+  .mobile-nav-links a {
+    font-size: 16px;
+    padding: 14px 0;
+  }
+}
+
+/* ==============================
+   🚨 FORCED WHITE HAMBURGER ICONS
+   ============================== */
+
+/* Ensure the button itself has no dark background */
+.hamburger {
+  background: transparent !important;
+}
+
+/* Force every single line inside the hamburger to be pure white */
+.hamburger span {
+  display: block !important;
+  background-color: #ffffff !important;
+  border-radius: 2px !important;
+  height: 2px !important;
+}
+
+/* Container for the 3 lines */
+.menu-icon-open {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 22px;
+}
+
+/* Container for the X */
+.menu-icon-close {
+  position: relative;
+  width: 22px;
+  height: 16px;
+  display: block;
+}
+
+/* Positioning the X lines */
+.menu-icon-close span {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate the two lines to make an X */
+.menu-icon-close span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.menu-icon-close span:nth-child(2) {
+  transform: rotate(-45deg);
 }
