@@ -13,23 +13,23 @@ const AdminPage = () => {
   const [authorized, setAuthorized] = useState(false);
   const [checking, setChecking] = useState(true);
 
-  // Auth guard — check localStorage for is_admin === 1
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "null");
-    if (!user || user.is_admin !== 1) {
-      navigate("/"); // redirect non-admins to homepage
+    // is_admin is a MSSQL bit — comes back as true/false (boolean)
+    // use truthy check to handle both boolean true and number 1
+    if (!user || !user.is_admin) {
+      navigate("/"); // not admin → homepage
     } else {
-      setAuthorized(true);
+      setAuthorized(true); // is admin → show page, no navigate()
     }
     setChecking(false);
-  }, [navigate]);
+  }, []); // empty deps — only run once on mount, no navigate dependency
 
   if (checking) return null;
   if (!authorized) return null;
 
   return (
     <div className="admin-layout">
-      {/* SIDEBAR */}
       <aside className="admin-sidebar">
         <div className="admin-logo">Admin Panel</div>
 
@@ -62,7 +62,6 @@ const AdminPage = () => {
         </button>
       </aside>
 
-      {/* MAIN CONTENT */}
       <main className="admin-main">
         {activeSection === "dashboard" && <Dashboard />}
         {activeSection === "products" && <ProductManager />}

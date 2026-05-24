@@ -32,7 +32,7 @@ const Login = () => {
 
         // Case 1: Admin user
         if (data.user.is_admin === 1 || data.user.is_admin === true) {
-          navigate("/admin/product-manager");
+          navigate("/admin");
         }
         // Case 2: Regular user
         else {
