@@ -1,0 +1,10 @@
+# Logs
+logs
+*.log
+
+# Dependency directories
+node_modules/
+
+# Env files (CRITICAL)
+.env
+.env.local

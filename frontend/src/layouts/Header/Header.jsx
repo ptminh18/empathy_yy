@@ -5,17 +5,18 @@ import {
   IoBagOutline,
 } from "react-icons/io5";
 import "./Header.css";
+import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 
 const Header = () => {
-  // const smallerLogo = document.querySelector(".logo-header");
+  const smallerLogo = document.querySelector(".logo-header");
 
-  // window.addEventListener("scroll", function () {
-  //   if (window.scrollY > 50) {
-  //     smallerLogo.classList.add("smaller");
-  //   } else {
-  //     smallerLogo.classList.remove("smaller");
-  //   }
-  // });
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 50) {
+      smallerLogo.classList.add("smaller");
+    } else {
+      smallerLogo.classList.remove("smaller");
+    }
+  });
   return (
     <>
       <div className="upper-header">
@@ -34,13 +35,14 @@ const Header = () => {
           <a href="/contact">contact us</a>
         </nav>
         <div className="nav-icons">
-          <a>
+          {/* <a>
             <IoSearchOutline size={25} />
-          </a>
+          </a> */}
+          <SearchBar />
           <a href="/login">
             <IoPersonOutline size={25} />
           </a>
-          <a>
+          <a href="/cart">
             <IoBagOutline size={25} />
           </a>
         </div>

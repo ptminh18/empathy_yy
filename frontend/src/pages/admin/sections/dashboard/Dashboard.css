@@ -1,0 +1,146 @@
+/* .dashboard {
+  padding: 20px 10vw 0 10vw;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+.loading {
+  color: #333;
+}
+
+.error {
+  color: #e74343;
+} */
+
+.dashboard {
+  color: #fff;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+
+.dashboard-loading {
+  color: #888;
+  padding: 40px;
+}
+
+/* SUMMARY CARDS */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.dashboard-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.card-label {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-value {
+  font-size: 26px;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* TABLE */
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table thead {
+  background: #111;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 14px 18px;
+  color: #555;
+  font-weight: 500;
+  border-bottom: 1px solid #1e1e1e;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #141414;
+  color: #ccc;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover td {
+  background: #0f0f0f;
+}
+
+/* STATUS BADGE */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-completed {
+  background: #0d2e1a;
+  color: #4caf50;
+}
+.status-pending {
+  background: #2a2000;
+  color: #ffc107;
+}
+.status-cancelled {
+  background: #2a0a0a;
+  color: #f44336;
+}
