@@ -737,7 +737,10 @@ app.put("/api/orders/:id/status", async (req, res) => {
 // SERVER START
 // =============================
 
-const PORT = 8080;
-app.listen(PORT, () =>
-  console.log(`🚀 Server running: http://localhost:${PORT}`),
+// Thay vì ép chết PORT = 8080, hãy ưu tiên lấy PORT do Render cấp
+const PORT = process.env.PORT || 8080;
+
+// Bắt buộc phải thêm '0.0.0.0' để mở cổng ra môi trường Internet của Render
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`🚀 Server running on port: ${PORT}`),
 );
