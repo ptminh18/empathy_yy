@@ -1,11 +1,14 @@
-import Header from "../../../Layouts/Header/Header.jsx";
-import Footer from "../../../Layouts/Footer/Footer.jsx";
+import Header from "../../../layouts/Header/Header.jsx";
+import Footer from "../../../layouts/Footer/Footer.jsx";
 import "./Blog.css";
 
 function BlogPage() {
   return (
     <div>
       <Header />
+      <div style={{ paddingTop: "20px" }}>
+        <h1>We will update this section soon</h1>
+      </div>
       <Footer />
     </div>
   );

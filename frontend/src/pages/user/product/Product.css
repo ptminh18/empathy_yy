@@ -246,3 +246,96 @@ body {
     padding: 13px;
   }
 }
+
+/* ==============================
+   RESPONSIVE — MOBILE (≤768px)
+   ============================== */
+@media (max-width: 768px) {
+  /* Ép container tràn viền (100%) để khung ảnh lớn sát lề màn hình */
+  .product-container {
+    flex-direction: column;
+    width: 100%;
+    transform: none;
+    margin: 0 auto;
+    gap: 0;
+    padding: 0;
+  }
+
+  .product-gallery {
+    flex: none;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  /* 1. KHUNG ẢNH CHÍNH CỐ ĐỊNH */
+  .main-image {
+    width: 100%;
+    height: auto;
+    max-height: none; /* Ghi đè giới hạn max-height của Desktop */
+    aspect-ratio: 1 / 1; /* Ép tỉ lệ 1:1 (vuông). Bạn có thể đổi thành 4/5 nếu ảnh chữ nhật dọc */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo, khít vào khung */
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* 2. HÀNG ẢNH THU NHỎ TRÊN MOBILE */
+  .thumbnail-row {
+    display: flex; /* Ghi đè CSS grid của Desktop */
+    justify-content: center; /* Căn giữa các ảnh nhỏ */
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .thumb {
+    width: 70px; /* Kích thước cố định cho ảnh nhỏ */
+    aspect-ratio: 1 / 1; /* Ảnh nhỏ cũng vuông vắn */
+    object-fit: cover;
+    opacity: 0.4; /* Mờ đi để tôn ảnh active lên */
+    border: 1px solid transparent;
+    transition:
+      opacity 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  /* 3. TRẠNG THÁI HIỂN THỊ (ACTIVE) CỦA ẢNH ĐANG CHỌN */
+  .thumb.active {
+    opacity: 1; /* Sáng rõ 100% */
+    border: 1px solid #ffffff; /* Thêm viền trắng */
+  }
+
+  /* Căn chỉnh lại lề cho phần thông tin (do container đã full 100% width) */
+  .product-info {
+    flex: none;
+    width: auto;
+    padding: 0 5vw; /* Trả lại lề trái/phải cho text */
+  }
+
+  .product-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-title {
+    font-size: 26px;
+  }
+
+  .price-container {
+    font-size: 17px;
+  }
+
+  /* Ảnh thu nhỏ gọn lại một chút trên màn hình iPhone bé */
+  .thumb {
+    width: 60px;
+  }
+
+  .quantity-box button {
+    padding: 10px 14px;
+  }
+
+  .add-cart,
+  .buy-shop {
+    font-size: 15px;
+    padding: 13px;
+  }
+}

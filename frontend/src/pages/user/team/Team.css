@@ -125,7 +125,10 @@ h2 {
   h2 {
     font-size: large;
   }
-
+  .player-image-container {
+    /* width: 28vw; */
+    height: 40vh;
+  }
   .player-signature a {
     font-size: 0.95rem;
     padding: 8px 18px;

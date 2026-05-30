@@ -1,5 +1,5 @@
-import Header from "../../../Layouts/Header/Header.jsx";
-import Footer from "../../../Layouts/Footer/Footer.jsx";
+import Header from "../../../layouts/Header/Header.jsx";
+import Footer from "../../../layouts/Footer/Footer.jsx";
 import { useState, useEffect } from "react";
 import "./Team.css";
 
