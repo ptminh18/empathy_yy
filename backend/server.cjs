@@ -23,7 +23,6 @@ app.use(express.json());
 // =============================
 
 const checkoutNodeJssdk = require("@paypal/checkout-server-sdk");
-require("dotenv").config();
 
 function paypalClient() {
   const clientId = process.env.PAYPAL_CLIENT_ID;
@@ -71,17 +70,6 @@ app.post("/api/paypal/create-order", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-// =============================
-// CAPTURE PAYPAL ORDER + CREATE ORDER RECORD
-// POST /api/paypal/capture-order
-// Body: {
-//   orderID,
-//   customer_id, customer_name,
-//   yoyo_id, yoyo_name,
-//   quantity, total_price
-// }
-// =============================
 
 app.post("/api/paypal/capture-order", async (req, res) => {
   try {
@@ -737,8 +725,7 @@ app.put("/api/orders/:id/status", async (req, res) => {
 // SERVER START
 // =============================
 
-// Thay vì ép chết PORT = 8080, hãy ưu tiên lấy PORT do Render cấp
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 
 // Bắt buộc phải thêm '0.0.0.0' để mở cổng ra môi trường Internet của Render
 app.listen(PORT, "0.0.0.0", () =>
