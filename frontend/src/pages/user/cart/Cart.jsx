@@ -5,11 +5,11 @@ import "./Cart.css";
 import "../../../styles/notification.css";
 import Header from "../../../layouts/Header/Header.jsx";
 import Footer from "../../../layouts/Footer/Footer.jsx";
-import PayPalButton from "../../../components/PayPalButton/PayPalButton.jsx";
+import PayPalButton from "../../../components/PaypalButton/PaypalButton.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE = "http://127.0.0.1:8080";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8080";
 const EXCHANGE_RATE = 25000; // 1 USD = 25,000 VND
 
 const CartPage = () => {

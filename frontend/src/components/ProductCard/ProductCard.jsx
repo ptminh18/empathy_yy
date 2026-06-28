@@ -7,7 +7,7 @@ const ProductCard = ({ products }) => {
   if (!products || !Array.isArray(products)) {
     return <p>No products found.</p>;
   }
-  const API_BASE = "http://127.0.0.1:8080";
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8080";
 
   return (
     <div className="product-grid">

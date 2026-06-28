@@ -6,8 +6,10 @@ import "./Team.css";
 function TeamPage() {
   const [loading, setLoading] = useState(true);
   const [players, setPlayers] = useState([]);
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8080";
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/api/players")
+    fetch(`${API_BASE}/api/players`)
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();

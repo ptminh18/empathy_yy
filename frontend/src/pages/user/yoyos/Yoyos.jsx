@@ -14,10 +14,11 @@ function YoyosPage() {
   // 1. Lấy trang hiện tại trực tiếp từ URL (?page=x). Mặc định là 1.
   const currentPage = Number(searchParams.get("page")) || 1;
   const itemsPerPage = 12;
+  const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8080";
 
   // 2. Fetch dữ liệu từ API
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/api/products")
+    fetch(`${API_BASE}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
