@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../Layouts/Header/Header.jsx";
-import Footer from "../../Layouts/Footer/Footer.jsx";
+import Header from "../../layouts/Header/Header.jsx";
+import Footer from "../../layouts/Footer/Footer.jsx";
 import "./Register.css";
 
 const Register = () => {
