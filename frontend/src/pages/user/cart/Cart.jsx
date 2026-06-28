@@ -5,7 +5,7 @@ import "./Cart.css";
 import "../../../styles/notification.css";
 import Header from "../../../layouts/Header/Header.jsx";
 import Footer from "../../../layouts/Footer/Footer.jsx";
-import PayPalButton from "../../../components/PaypalButton/PaypalButton.jsx";
+import PayPalButton from "../../../components/PayPalButton/PayPalButton.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
